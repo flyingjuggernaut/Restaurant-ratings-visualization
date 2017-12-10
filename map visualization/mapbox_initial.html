@@ -86,8 +86,8 @@ iconSize: [12, 12],
   {
     if(restaurantData.businesses[i].location.city == "Ann Arbor")
       {
-        var marker = {};
-        var cuisine = [];
+        let marker = {};
+        let cuisine = [];
         if(restaurantData.businesses[i].price=='$$$$')
           {
 
@@ -103,7 +103,8 @@ iconSize: [12, 12],
                                     <div class="restInfo">
                                       <h3>${restaurantData.businesses[i].name}</h3>
                                       <p>Rating:  ${restaurantData.businesses[i].rating} stars</p>
-                                      <p>Price Range ${restaurantData.businesses[i].price}</p>
+                                      <p>Cuisines: ${cuisine}</p>
+                                      <p>Price Range: ${restaurantData.businesses[i].price}</p>
                                       <p>Address: ${restaurantData.businesses[i].location.display_address}</p>
                                       <a href="${restaurantData.businesses[i].url}">Website</a>
                                     </div>
@@ -117,6 +118,9 @@ iconSize: [12, 12],
         else if(restaurantData.businesses[i].price=='$$$')
           {
             // checkRating(restaurantData.businesses[i].rating);
+            restaurantData.businesses[i].categories.forEach(function(element){
+                cuisine.push(element.title);
+            });
             marker = L.marker(new L.LatLng(restaurantData.businesses[i].coordinates.latitude,restaurantData.businesses[i].coordinates.longitude), {
               icon: myIcon_3
                 }).addTo(map);
@@ -126,7 +130,8 @@ iconSize: [12, 12],
                                     <div class="restInfo">
                                       <h3>${restaurantData.businesses[i].name}</h3>
                                       <p>Rating:  ${restaurantData.businesses[i].rating} stars</p>
-                                      <p>Price Range ${restaurantData.businesses[i].price}</p>
+                                      <p>Cuisines: ${cuisine}</p>
+                                      <p>Price Range: ${restaurantData.businesses[i].price}</p>
                                       <p>Address: ${restaurantData.businesses[i].location.display_address}</p>
                                       <a href="${restaurantData.businesses[i].url}">Website</a>
                                     </div>
@@ -138,6 +143,9 @@ iconSize: [12, 12],
         else if(restaurantData.businesses[i].price=='$$')
           {
 
+            restaurantData.businesses[i].categories.forEach(function(element){
+                cuisine.push(element.title);
+            });
             marker = L.marker(new L.LatLng(restaurantData.businesses[i].coordinates.latitude,restaurantData.businesses[i].coordinates.longitude), {
               icon: myIcon_2
                 }).addTo(map);
@@ -147,7 +155,8 @@ iconSize: [12, 12],
                                     <div class="restInfo">
                                       <h3>${restaurantData.businesses[i].name}</h3>
                                       <p>Rating:  ${restaurantData.businesses[i].rating} stars</p>
-                                      <p>Price Range ${restaurantData.businesses[i].price}</p>
+                                      <p>Cuisines: ${cuisine}</p>
+                                      <p>Price Range: ${restaurantData.businesses[i].price}</p>
                                       <p>Address: ${restaurantData.businesses[i].location.display_address}</p>
                                       <a href="${restaurantData.businesses[i].url}">Website</a>
                                     </div>
@@ -157,7 +166,9 @@ iconSize: [12, 12],
         }
         else if(restaurantData.businesses[i].price=='$')
           {
-
+            restaurantData.businesses[i].categories.forEach(function(element){
+                cuisine.push(element.title);
+            });
             marker = L.marker(new L.LatLng(restaurantData.businesses[i].coordinates.latitude,restaurantData.businesses[i].coordinates.longitude), {
               icon: myIcon
                 }).addTo(map);
@@ -167,7 +178,8 @@ iconSize: [12, 12],
                                     <div class="restInfo">
                                       <h3>${restaurantData.businesses[i].name}</h3>
                                       <p>Rating:  ${restaurantData.businesses[i].rating} stars</p>
-                                      <p>Price Range ${restaurantData.businesses[i].price}</p>
+                                      <p>Cuisines: ${cuisine}</p>
+                                      <p>Price Range: ${restaurantData.businesses[i].price}</p>
                                       <p>Address: ${restaurantData.businesses[i].location.display_address}</p>
                                       <a href="${restaurantData.businesses[i].url}">Website</a>
                                     </div>
@@ -177,7 +189,9 @@ iconSize: [12, 12],
         }
         else {
           {
-
+            restaurantData.businesses[i].categories.forEach(function(element){
+                cuisine.push(element.title);
+            });
             marker = L.marker(new L.LatLng(restaurantData.businesses[i].coordinates.latitude,restaurantData.businesses[i].coordinates.longitude), {
               icon: myIcon_5
                 }).addTo(map);
@@ -187,6 +201,7 @@ iconSize: [12, 12],
                                     <div class="restInfo">
                                       <h3>${restaurantData.businesses[i].name}</h3>
                                       <p>Rating:  ${restaurantData.businesses[i].rating} stars</p>
+                                      <p>Cuisines: ${cuisine}</p>
                                       <p>Price Range: ${restaurantData.businesses[i].price}</p>
                                       <p>Address: ${restaurantData.businesses[i].location.display_address}</p>
                                       <a href="${restaurantData.businesses[i].url}">Website</a>
