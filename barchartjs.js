@@ -32,7 +32,7 @@ $.getJSON("AArestaurants.json", function(data) {
         },
         type:'bar',
         colors: {
-          Ratings: '#edf8fb',
+          Ratings: 'rgb(0,109,44);',
       },
     },
     bar: {
@@ -69,23 +69,23 @@ $.getJSON("AArestaurants.json", function(data) {
 
   for(let i=0;i<15;i++)
   {
-    console.log(sortedRestaurants[i].price);
+    //console.log(sortedRestaurants[i].price);
 
     if(sortedRestaurants[i].price=='$')
     {
-      d3.select(".c3-bar-"+i).style("fill", "rgb(178, 226, 226)");
+      d3.select(".c3-bar-"+i).style("fill", "rgb(44,162,95)");
     }
     else if(sortedRestaurants[i].price=='$$')
     {
-      d3.select(".c3-bar-"+i).style("fill", "rgb(102, 194, 164)");
+      d3.select(".c3-bar-"+i).style("fill", "rgb(102,194,164)");
     }
     else if(sortedRestaurants[i].price=='$$$')
     {
-      d3.select(".c3-bar-"+i).style("fill", "rgb(44, 162, 95)");
+      d3.select(".c3-bar-"+i).style("fill", "rgb(178,226,226)");
     }
     else
     {
-      d3.select(".c3-bar-"+i).style("fill", "rgb(0, 109, 44)");
+      d3.select(".c3-bar-"+i).style("fill", "rgb(237, 248, 251)");
     }
 
   }
@@ -103,12 +103,11 @@ $.getJSON("AArestaurants.json", function(data) {
         });
     });
 
+
+
    var top15filteredRestaurants = filteredRestaurants.slice(0,15);
    var filteredRestaurantNames = top15filteredRestaurants.map(d => d.name);
    var filteredrestaurantRatings = top15filteredRestaurants.map(d => d.rating);
-
-    //console.log(filteredRestaurantNames);
-    //console.log(filteredrestaurantRatings);
 
 
     var chart = c3.generate({
@@ -156,26 +155,79 @@ $.getJSON("AArestaurants.json", function(data) {
 
     for(let i=0;i<top15filteredRestaurants.length;i++)
     {
-      console.log(top15filteredRestaurants[i].price);
+      //console.log(top15filteredRestaurants[i].price);
 
       if(top15filteredRestaurants[i].price=='$')
       {
-        d3.select(".c3-bar-"+i).style("fill", "rgb(178, 226, 226)");
+        d3.select(".c3-bar-"+i).style("fill", "rgb(44,162,95)");
       }
       else if(top15filteredRestaurants[i].price=='$$')
       {
-        d3.select(".c3-bar-"+i).style("fill", "rgb(102, 194, 164)");
+        d3.select(".c3-bar-"+i).style("fill", "rgb(102,194,164)");
       }
       else if(top15filteredRestaurants[i].price=='$$$')
       {
-        d3.select(".c3-bar-"+i).style("fill", "rgb(44, 162, 95)");
+        d3.select(".c3-bar-"+i).style("fill", "rgb(178,226,226)");
       }
       else
       {
-        d3.select(".c3-bar-"+i).style("fill", "rgb(0, 109, 44)");
+        d3.select(".c3-bar-"+i).style("fill", "rgb(237, 248, 251)");
       }
 
     }
+
+    var avg = 0.0;
+    filteredRestaurants.forEach(function(element)
+    {
+       avg += element.rating;
+    })
+
+    avg = avg/filteredRestaurants.length;
+    console.log(avg);
+
+    var axisData = (d3.select(".c3-axis-y"))[0][0].childNodes;
+    //var gAxis = axisData.selectAll('g')
+    //axisData.childNodes[1].childNodes[1].childNodes[0].innerHTML
+    for (var i=1;i<axisData.length-1;i++)
+    {
+
+      if(axisData[i].childNodes[1].childNodes[0].innerHTML-avg == 0){
+        var y_coord = axisData[i].getAttribute("transform").split(",")[1].split(')')[0];
+        var ycoord = parseInt(y_coord)+4;
+        //d3.select('svg').append("line").attr({ x1: 0, y1: y_coord, x2: 0, y2: y_coord+50});
+        d3.select('svg')
+        .append("line")
+        .attr({ x1: 40, y1: ycoord, x2: 1000, y2: ycoord})
+        .attr('class','dashed');
+
+        d3.select('svg')
+        .append("text")
+        .attr("x",700)
+        .attr("y",ycoord-5)
+        .text("Average rating");
+      }
+
+    if(axisData[i].childNodes[1].childNodes[0].innerHTML-avg < 0.5 &&
+      axisData[i].childNodes[1].childNodes[0].innerHTML-avg > 0)
+      {
+        var y_coordupper = axisData[i].getAttribute("transform").split(",")[1].split(')')[0];
+        var ycoord = y_coordupper;
+        var y_coordlower = axisData[i-1].getAttribute("transform").split(",")[1].split(')')[0];
+        var y_coord = (y_coordlower-y_coordupper);
+        ycoord = parseInt(ycoord) + ((y_coord/0.5)*0.4);
+        d3.select('svg')
+        .append("line")
+        .attr({ x1: 40, y1: ycoord, x2: 1000, y2: ycoord})
+        .attr('class','dashed');
+
+        d3.select('svg')
+        .append("text")
+        .attr("x",700)
+        .attr("y",ycoord-5)
+        .text("Average rating");
+      }
+    }
+
   };
 
 
