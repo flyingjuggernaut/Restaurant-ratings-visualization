@@ -202,7 +202,7 @@ $.getJSON("AArestaurants.json", function(data) {
 
         d3.select('svg')
         .append("text")
-        .attr("x",700)
+        .attr("x",200)
         .attr("y",ycoord-5)
         .text("Average rating");
       }
@@ -215,14 +215,17 @@ $.getJSON("AArestaurants.json", function(data) {
         var y_coordlower = axisData[i-1].getAttribute("transform").split(",")[1].split(')')[0];
         var y_coord = (y_coordlower-y_coordupper);
         ycoord = parseInt(ycoord) + ((y_coord/0.5)*0.4);
+
+        var finalPoint = document.getElementsByTagName('svg')[0].getAttribute('width');
+        console.log(finalPoint);
         d3.select('svg')
         .append("line")
-        .attr({ x1: 40, y1: ycoord, x2: 1000, y2: ycoord})
+        .attr({ x1: 40, y1: ycoord, x2: finalPoint, y2: ycoord})
         .attr('class','dashed');
 
         d3.select('svg')
         .append("text")
-        .attr("x",700)
+        .attr("x",200)
         .attr("y",ycoord-5)
         .text("Average rating");
       }
