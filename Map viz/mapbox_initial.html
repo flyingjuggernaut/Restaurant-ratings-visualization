@@ -62,29 +62,9 @@
 </div>
 
 <script>
-// mapboxgl.accessToken = 'pk.eyJ1IjoiYXdlc3VtamF0aW4iLCJhIjoiY2phenFwZmU4MWtmbDMybzk4OTc0bXk0ZiJ9.3zCgrZdp4_g4wBnVxaZKRg';
 L.mapbox.accessToken = 'pk.eyJ1IjoiYXdlc3VtamF0aW4iLCJhIjoiY2phenFwZmU4MWtmbDMybzk4OTc0bXk0ZiJ9.3zCgrZdp4_g4wBnVxaZKRg';
-var map = L.mapbox.map('map', 'mapbox.dark')
+var map = L.mapbox.map('map', 'mapbox.streets-basic')
     .setView([42.2808, -83.7430], 13);
-// var map = new mapboxgl.Map({
-//     container: 'map',
-//     style: 'mapbox://styles/mapbox/light-v9',
-//     center: [-83.7430, 42.2808],
-//     zoom: 12
-// });
-//
-// lat = restaurantData.businesses[0].coordinates.latitude;
-// lng = restaurantData.businesses[0].coordinates.longitude;
-
-// theCoords = {
-//     "type": "LineString",
-//     "coordinates": [
-//         [42.2803651,-83.7491532]
-//     ]
-// };
-
- //  map.on('load', function () {
-  //  L.marker([42.2803651,-83.7491532]).addTo(map);
   var myIcon = L.icon({
 	iconUrl: 'LocationPin_1.png',
 	iconSize: [8, 8],
@@ -240,55 +220,7 @@ iconSize: [12, 12],
           }
         }
     }
-}
- //   map.addLayer({
- //     "id": "route",
- //     "type": "line",
- //     "source": {
- //         "type": "geojson",
- //         "data": {
- //             "type": "Feature",
- //             "properties": {},
- //             "geometry": {
- //                 "type": "LineString",
- //                 "coordinates": [
- //                     [42.2803651,-83.7491532]
- //                 ]
- //             }
- //         }
- //     },
- //     "layout": {
- //         "line-join": "round",
- //         "line-cap": "round"
- //     },
- //     "paint": {
- //         "line-color": "#888",
- //         "line-width": 8
- //     }
- // });
-// map.addSource("route", {
-//       "type": "geojson",
-//       "data": {
-//           "type": "Feature",
-//           "properties": {},
-//           "geometry": theCoords
-//       }
-//   });
-//
-//   map.addLayer({
-//       "id": "route",
-//       "type": "line",
-//       "source": "route",
-//       "layout": {
-//           "line-join": "round",
-//           "line-cap": "round"
-//       },
-//       "paint": {
-//           "line-color": "#888",
-//           "line-width": 8
-//       }
-//   });
-// });
+  }
 
 function checkRating(rating, marker)
 {
